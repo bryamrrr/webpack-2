@@ -2,29 +2,25 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
-    './src/index.js'
+    './src/index.jsx'
   ],
   output: {
-    path: __dirname,
-    publicPath: '/',
+    path: __dirname + '/built/statics',
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         loader: 'eslint-loader',
         enforce: 'pre'
       },
       {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
-      {
+        test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
-          presets: ['env']
+          presets: ['env', 'react']
         }
       },
       {
@@ -32,13 +28,21 @@ module.exports = {
         exclude: /(node_modules)/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-            use: 'css-loader?modules',
+          use: [
+           {
+             loader: 'css-loader',
+             options: {
+               modules: true,
+               localIdentName: '[path][name]__[local]--[hash:base64:5]'
+             }
+           }
+         ],
         }),
       }
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.css']
+    extensions: ['.js', '.jsx', '.css']
   },
   devServer: {
     historyApiFallback: true,
@@ -46,6 +50,6 @@ module.exports = {
   },
   target: 'web',
   plugins: [
-    new ExtractTextPlugin('./assets/styles.css'),
+    new ExtractTextPlugin('styles.css'),
   ]
 };

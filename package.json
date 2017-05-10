@@ -1,13 +1,11 @@
 {
   "name": "dashboard-yachay-react",
   "version": "0.1.0",
-  "description": "Simple starter package for Redux with React and Babel support",
+  "description": "Yachay Dashboard React",
   "main": "index.js",
-  "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
+  "repository": "ssh://git@git.rcp.pe:4488/devteam/yachay-dashboard-react.git",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
-    "test:watch": "npm run test -- --watch"
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline"
   },
   "author": "",
   "license": "ISC",
@@ -20,7 +18,6 @@
     "babel-preset-react": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
-    "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2 || ^4.0.0",
     "eslint-plugin-react": "^6.9.0",
