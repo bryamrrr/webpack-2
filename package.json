@@ -5,7 +5,10 @@
   "main": "index.js",
   "repository": "ssh://git@git.rcp.pe:4488/devteam/yachay-dashboard-react.git",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline"
+    "watch": "webpack -w",
+    "sfs": "serve ./built/statics --port 8081 --cache 0",
+    "bff": "node ./built/server/server.js",
+    "start": "concurrently --kill-others \"npm run watch\" \"npm run sfs\" \"npm run bff\""
   },
   "author": "",
   "license": "ISC",
@@ -16,23 +19,25 @@
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.24.1",
+    "concurrently": "^3.4.0",
+    "css-loader": "^0.28.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2 || ^4.0.0",
     "eslint-plugin-react": "^6.9.0",
+    "extract-text-webpack-plugin": "^2.1.0",
     "jest": "20.0.0",
     "jsdom": "^10.1.0",
-    "webpack": "^2.2.0",
-    "webpack-dev-server": "^1.14.0",
-    "css-loader": "^0.28.1",
+    "react-test-renderer": "^15.5.4",
+    "serve": "^5.1.5",
     "style-loader": "^0.17.0",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "react-test-renderer": "^15.5.4"
+    "webpack": "^2.2.0"
   },
   "dependencies": {
     "express": "^4.15.2",
     "lodash": "^4.17.4",
+    "prop-types": "^15.5.9",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",

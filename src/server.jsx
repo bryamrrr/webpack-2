@@ -1,26 +1,40 @@
 import express from 'express';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
+
+import Layout from './layout';
+import Page from './page';
 
 const app = express();
 
-app.get('/', (req, res) => {
-  const html = renderToString(React.DOM.h1(null, 'hola'));
+app.get('*', (req, res) => {
+  const context = {};
+  const html = renderToString(
+    <StaticRouter location={req.url} context={context}>
+      <Page />
+    </StaticRouter>,
+  );
 
-  res.write(html);
+  res.setHeader('Content-Type', 'text/html');
+
+  if (context.url) {
+    res.writeHead(301, {
+      Location: context.url,
+    });
+    res.end();
+  }
+
+  res.write(
+    renderToStaticMarkup(
+      <Layout
+        title="App"
+        content={html}
+      />,
+    ),
+  );
   res.end();
 });
 
 const port = 8080;
 app.listen(port);
-console.log(`Listening on port ${port}`);
-
-// function requestHandler(request, response) {
-//   const html = renderToString(
-//     React.DOM.h1(null, 'hola')
-//   );
-
-//   response.write(html);
-//   response.end();
-// }
-

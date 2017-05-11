@@ -2,8 +2,8 @@ const client = require('./webpack/webpack.client.config.js');
 const server = require('./webpack/webpack.server.config.js');
 
 const dir = __dirname + '/built';
-client.output.path = dir;
-server.output.path = dir;
+client.output.path = dir + '/statics';
+server.output.path = dir + '/server';
 
 module.exports = [
   client,

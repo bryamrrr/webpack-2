@@ -3,4 +3,4 @@
 ## Start project
 
 1. Install packages `npm install`
-4. Start client server `npm start`
+2. Bundle files, start static and client servers `npm start`
