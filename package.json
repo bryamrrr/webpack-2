@@ -8,7 +8,11 @@
     "watch": "webpack -w",
     "sfs": "serve ./built/statics --port 8081 --cache 0",
     "bff": "node ./built/server/server.js",
-    "start": "concurrently --kill-others \"npm run sfs\" \"npm run bff\" \"npm run watch\""
+    "start": "concurrently --kill-others \"npm run sfs\" \"npm run bff\" \"npm run watch\"",
+    "test": "jest",
+    "test:fix": "jest -u",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
