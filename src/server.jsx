@@ -5,6 +5,7 @@ import { StaticRouter } from 'react-router-dom';
 
 import Layout from './layout';
 import Page from './page';
+import { description } from '../package.json';
 
 const app = express();
 
@@ -28,7 +29,7 @@ app.get('*', (req, res) => {
   res.write(
     renderToStaticMarkup(
       <Layout
-        title="App"
+        title={description}
         content={html}
       />,
     ),

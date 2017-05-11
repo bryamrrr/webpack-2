@@ -18,6 +18,7 @@ function Layout(props) {
           }}
         />
         <script src="http://localhost:8081/app.js" />
+        <script src="http://localhost:35729/livereload.js" />
       </body>
     </html>
   );

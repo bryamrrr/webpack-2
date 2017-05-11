@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
   entry: './src/client.jsx',
@@ -48,5 +49,6 @@ module.exports = {
   target: 'web',
   plugins: [
     new ExtractTextPlugin('app.css'),
+    new LiveReloadPlugin(),
   ]
 };
