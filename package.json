@@ -2,9 +2,10 @@
   "name": "react-boilerplate",
   "version": "0.1.0",
   "description": "React Boilerplate",
-  "main": "index.js",
+  "main": "./built/server/server.js",
   "repository": "ssh://git@git.rcp.pe:4488/devteam/react-boilerplate.git",
   "scripts": {
+    "build": "NODE_ENV=production webpack -p",
     "watch": "webpack -w",
     "sfs": "serve ./built/statics --port 8081 --cache 0",
     "bff": "node ./built/server/server.js",
