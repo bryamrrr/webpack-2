@@ -7,6 +7,11 @@ import Layout from './layout';
 import Page from './page';
 import { description } from '../package.json';
 
+const domain = process.env.NODE_ENV === 'production'
+  ? 'https://statics.test.com'
+  : 'http://localhost:8081';
+const env = process.env.NODE_ENV;
+
 const app = express();
 
 app.get('*', (req, res) => {
@@ -31,6 +36,8 @@ app.get('*', (req, res) => {
       <Layout
         title={description}
         content={html}
+        domain={domain}
+        env={env}
       />,
     ),
   );

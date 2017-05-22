@@ -1,7 +1,8 @@
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 
-module.exports = {
+const config = {
   entry: './src/client.jsx',
   output: {
     filename: 'app.js'
@@ -31,7 +32,9 @@ module.exports = {
              loader: 'css-loader',
              options: {
                modules: true,
-               localIdentName: '[path][name]__[local]--[hash:base64:5]'
+               localIdentName: process.env.NODE_ENV === 'production'
+                ? '[hash:base64:5]'
+                : '[name]__[local]___[hash:base64:5]'
              }
            }
          ],
@@ -40,7 +43,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css']
+    extensions: ['.js', '.jsx', '.css', '.json']
   },
   devServer: {
     historyApiFallback: true,
@@ -48,7 +51,27 @@ module.exports = {
   },
   target: 'web',
   plugins: [
-    new ExtractTextPlugin('app.css'),
-    new LiveReloadPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+      }
+    }),
+    new ExtractTextPlugin('app.css')
   ]
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: {
+        except: ['$super', '$', 'exports', 'require'] // Try without it
+      }
+    })
+  );
+} else {
+  config.plugins.push(
+    new LiveReloadPlugin()
+  );
+}
+
+module.exports = config;
