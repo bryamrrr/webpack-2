@@ -6,7 +6,7 @@
   "repository": "ssh://git@git.rcp.pe:4488/devteam/react-boilerplate.git",
   "scripts": {
     "build": "NODE_ENV=production webpack -p",
-    "webpack": "webpack",
+    "webpack": "webpack -v",
     "watch": "webpack -w",
     "sfs": "serve ./built/statics --port 8081 --cache 0",
     "bff": "node ./built/server/server.js",
@@ -29,13 +29,13 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2 || ^4.0.0",
     "eslint-plugin-react": "^6.9.0",
-    "extract-text-webpack-plugin": "^2.1.0",
+    "extract-text-webpack-plugin": "2.0.0-rc.3",
     "jest": "20.0.0",
     "jsdom": "^10.1.0",
     "react-test-renderer": "^15.5.4",
     "serve": "^5.1.5",
     "style-loader": "^0.17.0",
-    "webpack": "^2.2.0",
+    "webpack": "2.6.0",
     "webpack-livereload-plugin": "^0.11.0"
   },
   "dependencies": {
