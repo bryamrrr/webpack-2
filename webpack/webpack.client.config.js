@@ -5,7 +5,7 @@ const LiveReloadPlugin = require('webpack-livereload-plugin');
 const config = {
   entry: './src/client.jsx',
   output: {
-    filename: 'app.js'
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -56,7 +56,7 @@ const config = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
       }
     }),
-    new ExtractTextPlugin('app.css')
+    new ExtractTextPlugin('styles.css')
   ]
 };
 

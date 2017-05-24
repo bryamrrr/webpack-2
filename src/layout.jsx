@@ -8,7 +8,7 @@ function Layout(props) {
         <meta charSet="utf-8" />
         <title>{props.title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href={`${props.domain}/app.css`} />
+        <link rel="stylesheet" href={`${props.domain}/styles.css`} />
       </head>
       <body>
         <div
@@ -17,7 +17,7 @@ function Layout(props) {
             __html: props.content,
           }}
         />
-        <script src={`${props.domain}/app.js`} />
+        <script src={`${props.domain}/bundle.js`} />
         { props.env !== 'production' && (
           <script src="http://localhost:35729/livereload.js" />
         )}
@@ -30,7 +30,11 @@ Layout.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   domain: PropTypes.string.isRequired,
-  env: PropTypes.string.isRequired,
+  env: PropTypes.string,
+};
+
+Layout.defaultProps = {
+  env: 'development',
 };
 
 export default Layout;
