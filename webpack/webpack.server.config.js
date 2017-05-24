@@ -1,6 +1,5 @@
 const fs = require('fs');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const nodeModules = fs
   .readdirSync('node_modules')
@@ -33,18 +32,17 @@ const config = {
       {
         test: /\.css$/,
         exclude: /(node_modules)/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-           {
-             loader: 'css-loader',
-             options: {
-               modules: true,
-               localIdentName: '[path][name]__[local]--[hash:base64:5]'
-             }
-           }
-         ],
-        }),
+        use: [
+         {
+            loader: 'css-loader/locals',
+            options: {
+              modules: true,
+              localIdentName: process.env.NODE_ENV === 'production'
+                ? '[hash:base64:5]'
+                : '[name]__[local]___[hash:base64:5]'
+            }
+          }
+        ]
       }
     ]
   },

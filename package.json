@@ -6,7 +6,7 @@
   "repository": "ssh://git@git.rcp.pe:4488/devteam/react-boilerplate.git",
   "scripts": {
     "build": "NODE_ENV=production webpack -p",
-    "webpack": "webpack -v",
+    "webpack": "webpack",
     "watch": "webpack -w",
     "sfs": "serve ./built/statics --port 8081 --cache 0",
     "bff": "node ./built/server/server.js",
