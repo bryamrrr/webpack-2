@@ -33,7 +33,6 @@ app.get('*', (req, res) => {
     res.writeHead(301, {
       Location: context.url,
     });
-    res.end();
   }
 
   res.write(
